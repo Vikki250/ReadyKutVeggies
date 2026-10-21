@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7ef">
+  <meta name="description" content="Freshly cut vegetables, ready for everyday cooking and suitable for freezing when stored appropriately.">
+  <title>ReadyKutVeggies | Freshly Cut, Ready to Cook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="products.js" defer></script>
+  <script src="cart.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="ReadyKutVeggies home">
+      <span class="brand-mark" aria-hidden="true">RK</span>
+      <span>ReadyKut<span class="brand-light">Veggies</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+      <a href="#shop">Shop</a>
+      <a href="#about">Our story</a>
+      <a href="#tips">Storage tips</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="header-cart" href="#cart" aria-label="Shopping cart, 0 items">
+      <span aria-hidden="true">Bag</span><span class="cart-count" id="header-cart-count">0</span>
+    </a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Fresh prep, made simple</p>
+        <h1 id="hero-title">Freshly Cut.<br>Ready to Cook.<br><em>Perfect to Freeze.</em></h1>
+        <p class="hero-intro">Enjoy fresh, ready-cut vegetables that make everyday cooking easier. Save preparation time, reduce kitchen hassle and keep your favourite vegetables ready for fresh meals or the freezer.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#shop">Shop Our Vegetables <span aria-hidden="true">&#8594;</span></a>
+          <a class="text-link" href="#shop">Explore Our Products <span aria-hidden="true">&#8599;</span></a>
+          <a class="text-link" href="#contact">Contact Us <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="hero-proof"><span class="proof-dot" aria-hidden="true"></span><span>Freshly prepared for your kitchen</span><span class="proof-divider"></span><span>Made for everyday meals</span></div>
+      </div>
+      <div class="hero-image-wrap">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1400&q=85" alt="A colourful bowl of fresh vegetables and greens" fetchpriority="high">
+        <div class="hero-note"><span class="note-spark" aria-hidden="true">✳</span><span><strong>Good food starts here</strong><small>Washed, prepared and ready when you are</small></span></div>
+        <span class="hero-stamp" aria-hidden="true">FRESH<br>EVERY<br>DAY</span>
+      </div>
+      <div class="hero-bottom" aria-hidden="true"><span>01 / 03</span><span class="hero-bottom-rule"></span><span>GOOD FOOD, LESS FUSS</span></div>
+    </section>
+
+    <section class="benefit-strip" aria-label="ReadyKutVeggies benefits">
+      <div class="benefit-item"><span class="benefit-number">01</span><span><strong>Ready when you are</strong><small>Freshly prepared and ready to use</small></span></div>
+      <div class="benefit-item"><span class="benefit-number">02</span><span><strong>Less prep, less mess</strong><small>More time for the meal</small></span></div>
+      <div class="benefit-item"><span class="benefit-number">03</span><span><strong>Cook or freeze</strong><small>Store appropriately for later use</small></span></div>
+      <div class="benefit-item"><span class="benefit-number">04</span><span><strong>Just-right portions</strong><small>Options for different households</small></span></div>
+    </section>
+
+    <section class="shop-section section-pad" id="shop" aria-labelledby="shop-title">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> Your kitchen, made easier</p><h2 id="shop-title">A little prep goes<br><em>a long way.</em></h2></div>
+        <div class="shop-heading-side"><p>From weeknight stir-fries to Sunday soups, find the fresh-cut favourites that make meal prep feel lighter.</p><a href="#cart" class="text-link">Review your bag <span aria-hidden="true">&#8594;</span></a></div>
+      </div>
+      <div class="catalog-note"><span class="note-icon" aria-hidden="true">i</span> Sample prices and weights are placeholders for demonstration. Confirm actual products, pack sizes and prices with ReadyKutVeggies before ordering.</div>
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="story-section" id="about" aria-labelledby="about-title">
+      <div class="story-image"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1100&q=85" alt="Fresh vegetables being prepared for a colourful meal" loading="lazy"><span class="image-caption">A fresher start to every meal.</span></div>
+      <div class="story-copy"><p class="eyebrow"><span class="eyebrow-line"></span> About ReadyKutVeggies</p><h2 id="about-title">Good food.<br><em>More breathing room.</em></h2><p>ReadyKutVeggies is here to make everyday cooking feel more manageable. Fresh, ready-cut vegetables help reduce the time and mess of preparation, so you can get to the good part sooner.</p><p>Choose convenient portions for the meals you love. Cook them fresh, or follow suitable storage guidance when freezing for later.</p><a class="button button-dark" href="#shop">Find your favourites <span aria-hidden="true">&#8594;</span></a></div>
+    </section>
+
+    <section class="tips-section section-pad" id="tips" aria-labelledby="tips-title">
+      <div class="tips-intro"><p class="eyebrow"><span class="eyebrow-line"></span> A few good habits</p><h2 id="tips-title">Keep it fresh.<br><em>Keep it simple.</em></h2><p>Follow the package instructions first. These general tips can help you handle ready-cut vegetables carefully at home.</p></div>
+      <div class="tips-list">
+        <article class="tip-row"><span class="tip-index">01</span><div><h3>Refrigerate promptly</h3><p>Keep fresh-cut vegetables chilled and return them to the refrigerator after use. Follow any storage instructions provided with your pack.</p></div><span class="tip-mark" aria-hidden="true">&#8599;</span></article>
+        <article class="tip-row"><span class="tip-index">02</span><div><h3>Use clean hands and tools</h3><p>Handle produce with clean hands and utensils. Keep it covered and separate from raw meat, poultry and seafood.</p></div><span class="tip-mark" aria-hidden="true">&#8599;</span></article>
+        <article class="tip-row"><span class="tip-index">03</span><div><h3>Freeze with care</h3><p>Where suitable, transfer vegetables to a freezer-safe, well-sealed container, label it with the date and follow food-safety guidance for the vegetable.</p></div><span class="tip-mark" aria-hidden="true">&#8599;</span></article>
+        <article class="tip-row"><span class="tip-index">04</span><div><h3>Cook your way</h3><p>Add to soups, stews, roasts, sautés or meal-prep dishes as appropriate. Cooking times vary with the vegetable and cut size.</p></div><span class="tip-mark" aria-hidden="true">&#8599;</span></article>
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact" aria-labelledby="contact-title">
+      <div><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> Questions or custom portions?</p><h2 id="contact-title">Let's make meal prep<br><em>a little easier.</em></h2></div>
+      <div class="contact-details"><p>Get in touch to confirm availability, real prices, delivery options and product storage instructions.</p><div class="contact-editable"><span>Business phone</span><strong>[Add business phone]</strong><span>Business email</span><strong>[Add business email]</strong><span>Location / service area</span><strong>[Add location or service area]</strong></div></div>
+    </section>
+
+    <section class="cart-checkout section-pad" id="cart" aria-labelledby="cart-title">
+      <div class="cart-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> Your selection</p><h2 id="cart-title">Shopping bag <span class="heading-count" id="cart-heading-count">(0)</span></h2></div><a href="#shop" class="text-link">Continue shopping <span aria-hidden="true">&#8594;</span></a></div>
+      <div class="cart-layout">
+        <div class="cart-items" id="cart-items" aria-live="polite"></div>
+        <aside class="order-summary" aria-labelledby="summary-title"><h3 id="summary-title">Order summary</h3><div class="summary-row"><span>Subtotal</span><strong id="cart-subtotal">R0.00</strong></div><div class="summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="summary-total"><span>Estimated total</span><strong id="cart-total">R0.00</strong></div><p class="summary-note">Delivery charges and final prices are not configured. This estimate uses placeholder product prices only.</p><a class="button button-primary summary-button" href="#checkout">Continue to checkout <span aria-hidden="true">&#8594;</span></a></aside>
+      </div>
+    </section>
+
+    <section class="checkout-section" id="checkout" aria-labelledby="checkout-title">
+      <div class="checkout-inner"><div class="checkout-intro"><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> Prepare your request</p><h2 id="checkout-title">Almost ready<br><em>for the good part.</em></h2><p>Share your details to prepare an order summary. This demo does not send your information, place an order, or process payment.</p><div class="checkout-caveat"><span aria-hidden="true">!</span> Confirm availability, delivery area, fees and payment arrangements directly with the business.</div></div>
+        <form id="checkout-form" class="checkout-form" novalidate>
+          <div class="form-grid"><label>Full name<input name="name" autocomplete="name" required minlength="2" placeholder="Your name"><span class="field-error" data-error="name"></span></label><label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com"><span class="field-error" data-error="email"></span></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" placeholder="Your contact number"><span class="field-error" data-error="phone"></span></label><label class="delivery-toggle"><input name="delivery" id="delivery-required" type="checkbox"><span>Delivery required</span></label><label class="address-field full-width" id="address-field">Delivery address<textarea name="address" autocomplete="street-address" rows="3" placeholder="Enter delivery address if applicable"></textarea><span class="field-error" data-error="address"></span></label><label class="full-width">Order notes<textarea name="notes" rows="2" placeholder="Optional details or preferences"></textarea></label></div>
+          <button class="button button-lime" type="submit">Review order details <span aria-hidden="true">&#8594;</span></button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">RK</span><span>ReadyKut<span class="brand-light">Veggies</span></span></a><p>Fresh prep for the meals that bring us together.</p><a href="#home" class="back-top">Back to top <span aria-hidden="true">&#8593;</span></a><small>© <span id="current-year"></span> ReadyKutVeggies. Sample catalog for demonstration.</small></footer>
+</body>
+</html>

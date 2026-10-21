@@ -1,0 +1,25 @@
+"use strict";
+const assert = require("node:assert/strict");
+const cartMath = require("../cart.js");
+
+const product = { id: "carrots", name: "Chopped carrots", image: "", alt: "Carrots", packs: [{ grams: 250, price: 18 }, { grams: 500, price: 29 }] };
+let cart = [];
+cartMath.addItem(cart, product, 250, 2);
+assert.equal(cartMath.itemCount(cart), 2);
+assert.equal(cartMath.subtotal(cart), 36);
+cartMath.addItem(cart, product, 250, 1);
+assert.equal(cart.length, 1);
+assert.equal(cartMath.subtotal(cart), 54);
+cartMath.addItem(cart, product, 500, 1);
+assert.equal(cart.length, 2);
+assert.equal(cartMath.subtotal(cart), 83);
+cartMath.setQuantity(cart, "carrots:500", 3);
+assert.equal(cartMath.subtotal(cart), 141);
+cart = cartMath.removeItem(cart, "carrots:250");
+assert.equal(cartMath.itemCount(cart), 3);
+assert.equal(cartMath.subtotal(cart), 87);
+assert.equal(cartMath.formatMoney(15), "R15.00");
+assert.equal(cartMath.formatWeight(1000), "1 kg");
+assert.throws(() => cartMath.addItem([], product, 123, 1), /valid pack size/);
+assert.throws(() => cartMath.addItem([], product, 250, 0), /between 1 and 99/);
+console.log("Cart tests passed.");
