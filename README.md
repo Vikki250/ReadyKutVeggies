@@ -23,13 +23,13 @@ The current GitHub repository must contain the website files before Render can d
 
 ## Edit the catalog
 
-Edit `products.js` to change product names, descriptions, pack weights, prices, images and cooking/storage guidance. All listed prices and weights are sample placeholders, not ReadyKutVeggies prices. Replace them only with confirmed business information. Each pack's `price` is a number in South African rand; the storefront formats it as `R0.00`.
+Edit `products.js` to change product names, descriptions, pack weights, prices, images and cooking/storage guidance. Prices currently listed are confirmed per-pack prices. Pack weights are not yet decided; keep them unlisted until confirmed. Each pack's `price` is a number in South African rand; the storefront formats it as `R0.00`.
 
 Update the editable contact placeholders in `index.html`. Confirm the actual delivery areas, fees, order policies and payment arrangements with the business before publishing.
 
 ## Cart behavior
 
-The cart supports pack-size selection, quantity changes from 1 to 99, removal, browser-local persistence, and calculated product subtotal/estimated total in ZAR. Delivery is not calculated because the fee is not configured. The checkout form validates contact details and an optional delivery address, then displays a local-only summary. It does not transmit personal information, place an order, or simulate a payment. A real order flow requires a trusted backend and a legitimate payment or order channel; never put payment secrets in client-side code.
+The cart supports per-pack price selection, quantity changes from 1 to 99, removal, browser-local persistence, and calculated product subtotal/estimated total in ZAR. Product weights are not displayed until confirmed. Delivery is not calculated because the fee is not configured. The checkout form validates contact details and an optional delivery address, then displays a local-only summary. It does not transmit personal information, place an order, or simulate a payment. A real order flow requires a trusted backend and a legitimate payment or order channel; never put payment secrets in client-side code.
 
 ## Tests
 
@@ -43,7 +43,7 @@ Node.js is not required to run the storefront itself. If a JavaScript runtime is
 
 ## Before launch
 
-- Replace all sample product prices and confirm available weights and product contents.
+- Confirm pack weights and product contents; the listed prices are the confirmed prices per pack.
 - Add real business contact details and confirm storage instructions for each product.
 - Confirm delivery areas, fees, order policies, and accepted payment/order methods.
 - Replace external sample photos with approved product photography where available.
