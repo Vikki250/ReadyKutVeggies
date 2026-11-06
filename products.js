@@ -11,3 +11,13 @@ window.READYKUT_PRODUCTS = [
   
   { id: "sweet potato", name: "Sweet potato", category: "Seasonal favourite", image: "https://images.unsplash.com/photo-1730815048561-45df6f7f331d?auto=format&fit=crop&w=900&q=80", alt: "A pile of pink and yellow sweet potatoes", description: "A versatile root vegetable for roasting, mashing, or adding to soups.", uses: "Roast, mash, or add to soups and stews.", storage: "Store in a cool, dry place. Once cut, refrigerate and use within a few days.", packs: [{ grams: 500, price: 39 }, { grams: 1000, price: 72 }] }
 ];
+
+const suppliedPhotos = {
+  peppers: { image: "assets/products/Pasted%20Image.png", name: "Chopped mixed peppers", alt: "Chopped green, yellow and orange peppers on a board", description: "Colourful chopped peppers, ready for quick meals and prep-ahead cooking.", uses: "Add to stir-fries, soups, sauces, roasts, salads and fajita-style fillings." },
+  cabbage: { image: "assets/products/Pasted%20Image%202.png", alt: "Freshly chopped cabbage in a bowl" },
+  onions: { image: "assets/products/Pasted%20Image%203.png", alt: "Chopped onions on a cutting board" }
+};
+window.READYKUT_PRODUCTS.forEach((product) => {
+  const photo = suppliedPhotos[product.id];
+  if (photo) Object.assign(product, photo);
+});
