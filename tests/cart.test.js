@@ -22,4 +22,17 @@ assert.equal(cartMath.formatMoney(15), "R15.00");
 assert.equal(cartMath.formatWeight(1000), "1 kg");
 assert.throws(() => cartMath.addItem([], product, 123, 1), /valid pack size/);
 assert.throws(() => cartMath.addItem([], product, 250, 0), /between 1 and 99/);
+
+const beans = { id: "green-beans", name: "Green Beans", image: "", alt: "Green beans", packs: [{ grams: null, price: 30 }] };
+const perPackCart = [];
+cartMath.addItem(perPackCart, beans, "per-pack", 2);
+assert.equal(perPackCart[0].key, "green-beans:per-pack");
+assert.equal(perPackCart[0].grams, null);
+assert.equal(cartMath.formatWeight(perPackCart[0].grams), "Per pack");
+assert.equal(cartMath.subtotal(perPackCart), 60);
+cartMath.addItem(perPackCart, beans, "per-pack", 1);
+assert.equal(perPackCart.length, 1);
+assert.equal(perPackCart[0].quantity, 3);
+assert.equal(cartMath.subtotal(perPackCart), 90);
+assert.throws(() => cartMath.addItem([], beans, "invalid", 1), /valid pack size/);
 console.log("Cart tests passed.");
