@@ -1,12 +1,13 @@
 (function (root) {
   "use strict";
 
-  function addItem(cart, product, grams, quantity) {
-    const pack = product.packs.find((item) => item.grams === Number(grams));
+  function addItem(cart, product, packValue, quantity) {
+    const grams = packValue === "per-pack" || packValue === "" || packValue === null ? null : Number(packValue);
+    const pack = product.packs.find((item) => item.grams === grams);
     if (!pack) throw new Error("Choose a valid pack size.");
     const count = Number(quantity);
     if (!Number.isInteger(count) || count < 1 || count > 99) throw new Error("Quantity must be between 1 and 99.");
-    const key = `${product.id}:${pack.grams}`;
+    const key = product.id + ":" + (pack.grams === null ? "per-pack" : pack.grams);
     const existing = cart.find((item) => item.key === key);
     if (existing) {
       existing.quantity = Math.min(99, existing.quantity + count);
@@ -37,11 +38,12 @@
   }
 
   function formatMoney(amount) {
-    return `R${Number(amount).toFixed(2)}`;
+    return "R" + Number(amount).toFixed(2);
   }
 
   function formatWeight(grams) {
-    return grams >= 1000 && grams % 1000 === 0 ? `${grams / 1000} kg` : `${grams} g`;
+    if (grams === null || grams === undefined) return "Per pack";
+    return grams >= 1000 && grams % 1000 === 0 ? (grams / 1000) + " kg" : grams + " g";
   }
 
   root.ReadyKutCart = { addItem, setQuantity, removeItem, itemCount, subtotal, formatMoney, formatWeight };
