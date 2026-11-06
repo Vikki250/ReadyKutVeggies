@@ -3,7 +3,7 @@
 
   const products = window.READYKUT_PRODUCTS || [];
   const cartApi = window.ReadyKutCart;
-  const cartStorageKey = "readykutveggies-cart-v1";
+  const cartStorageKey = "readykutveggies-cart-v2";
   const productGrid = document.getElementById("product-grid");
   const cartItems = document.getElementById("cart-items");
   let cart = loadCart();
@@ -31,13 +31,13 @@
 
   function renderProducts() {
     productGrid.innerHTML = products.map((product) => {
-      const packOptions = product.packs.map((pack) => `<option value="${pack.grams}">${cartApi.formatWeight(pack.grams)} · ${cartApi.formatMoney(pack.price)}</option>`).join("");
+      const packOptions = product.packs.map((pack) => `<option value="${pack.grams === null ? "per-pack" : pack.grams}">${cartApi.formatWeight(pack.grams)} · ${cartApi.formatMoney(pack.price)}</option>`).join("");
       return `<article class="product-card" data-product-id="${escapeHtml(product.id)}">
         <div class="product-image-wrap"><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.alt)}" loading="lazy"><span class="product-category">${escapeHtml(product.category)}</span></div>
         <div class="product-content"><div class="product-title-row"><h3>${escapeHtml(product.name)}</h3><span class="product-price" data-price>${cartApi.formatMoney(product.packs[0].price)}</span></div>
           <p class="product-description">${escapeHtml(product.description)}</p>
           <details class="product-details"><summary>Cooking & storage details</summary><p><strong>Try it:</strong> ${escapeHtml(product.uses)}</p><p><strong>Store it:</strong> ${escapeHtml(product.storage)}</p></details>
-          <div class="product-controls"><label class="pack-label">Pack size<select class="pack-select" aria-label="Pack size for ${escapeHtml(product.name)}">${packOptions}</select></label><label class="quantity-label">Qty<input class="product-quantity" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantity for ${escapeHtml(product.name)}"></label><button class="button button-add" type="button" data-add="${escapeHtml(product.id)}">Add to bag <span aria-hidden="true">+</span></button></div>
+          <div class="product-controls"><label class="pack-label">Price<select class="pack-select" aria-label="Price per pack for ${escapeHtml(product.name)}">${packOptions}</select></label><label class="quantity-label">Qty<input class="product-quantity" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantity for ${escapeHtml(product.name)}"></label><button class="button button-add" type="button" data-add="${escapeHtml(product.id)}">Add to bag <span aria-hidden="true">+</span></button></div>
         </div></article>`;
     }).join("");
     productGrid.addEventListener("change", (event) => {
@@ -45,7 +45,7 @@
       if (!select) return;
       const card = select.closest(".product-card");
       const product = products.find((item) => item.id === card.dataset.productId);
-      const pack = product.packs.find((item) => item.grams === Number(select.value));
+      const pack = product.packs.find((item) => item.grams === (select.value === "per-pack" ? null : Number(select.value)));
       card.querySelector("[data-price]").textContent = cartApi.formatMoney(pack.price);
     });
     productGrid.addEventListener("click", (event) => {
@@ -55,7 +55,7 @@
       const product = products.find((item) => item.id === button.dataset.add);
       const quantityInput = card.querySelector(".product-quantity");
       try {
-        cartApi.addItem(cart, product, Number(card.querySelector(".pack-select").value), Number(quantityInput.value));
+        cartApi.addItem(cart, product, card.querySelector(".pack-select").value, Number(quantityInput.value));
         saveCart();
         renderCart();
         button.innerHTML = "Added <span aria-hidden=\"true\">&#10003;</span>";
@@ -81,7 +81,7 @@
     if (cart.length === 0) {
       cartItems.innerHTML = `<div class="empty-cart"><span class="empty-cart-mark" aria-hidden="true">＋</span><div><h3>Your bag is ready for something fresh.</h3><p>Choose a product and pack size to get started.</p><a href="#shop" class="text-link">Browse vegetables <span aria-hidden="true">&#8594;</span></a></div></div><p id="cart-message" class="cart-message" role="status"></p>`;
     } else {
-      cartItems.innerHTML = `${cart.map((item) => `<article class="cart-item" data-cart-key="${escapeHtml(item.key)}"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy"><div class="cart-item-info"><h3>${escapeHtml(item.name)}</h3><p>${cartApi.formatWeight(item.grams)} pack · ${cartApi.formatMoney(item.unitPrice)} each</p><button class="remove-item" type="button" data-remove="${escapeHtml(item.key)}">Remove</button></div><div class="cart-quantity"><button type="button" data-step="-1" aria-label="Decrease quantity of ${escapeHtml(item.name)} ${cartApi.formatWeight(item.grams)}">−</button><span aria-live="polite">${item.quantity}</span><button type="button" data-step="1" aria-label="Increase quantity of ${escapeHtml(item.name)} ${cartApi.formatWeight(item.grams)}">+</button></div><strong class="cart-line-total">${cartApi.formatMoney(item.unitPrice * item.quantity)}</strong></article>`).join("")}<p id="cart-message" class="cart-message" role="status"></p>`;
+      cartItems.innerHTML = `${cart.map((item) => `<article class="cart-item" data-cart-key="${escapeHtml(item.key)}"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy"><div class="cart-item-info"><h3>${escapeHtml(item.name)}</h3><p>${cartApi.formatWeight(item.grams)} · ${cartApi.formatMoney(item.unitPrice)} each</p><button class="remove-item" type="button" data-remove="${escapeHtml(item.key)}">Remove</button></div><div class="cart-quantity"><button type="button" data-step="-1" aria-label="Decrease quantity of ${escapeHtml(item.name)} ${cartApi.formatWeight(item.grams)}">−</button><span aria-live="polite">${item.quantity}</span><button type="button" data-step="1" aria-label="Increase quantity of ${escapeHtml(item.name)} ${cartApi.formatWeight(item.grams)}">+</button></div><strong class="cart-line-total">${cartApi.formatMoney(item.unitPrice * item.quantity)}</strong></article>`).join("")}<p id="cart-message" class="cart-message" role="status"></p>`;
     }
     const subtotal = cartApi.subtotal(cart);
     document.getElementById("cart-subtotal").textContent = cartApi.formatMoney(subtotal);
